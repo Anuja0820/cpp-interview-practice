@@ -1,0 +1,21 @@
+// Online C++ compiler to run C++ program stack example
+#include <iostream>
+#include<stack>
+using namespace std;
+
+int main() {
+    // Write C++ code here
+    stack<char>st;
+    
+    st.push('A');
+    st.push('B');
+    st.push('C');
+    
+    cout<< "Top element : "<<st.top()<<endl;
+    st.pop();
+    
+    cout<<"new top element :"<<st.top()<<endl;
+    
+    
+    return 0;
+}
