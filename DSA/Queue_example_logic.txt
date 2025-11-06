@@ -1,0 +1,111 @@
+#include <iostream>
+#define SIZE 5  // maximum capacity of queue
+using namespace std;
+
+class Queue {
+private:
+    int arr[SIZE];   // array to store elements
+    int front;       // index of front element
+    int rear;        // index of rear element
+    int count;       // number of elements currently in queue
+
+public:
+    // Constructor: initialize everything
+    Queue() {
+        front = 0;
+        rear = -1;
+        count = 0;
+    }
+
+    // Add element to rear of queue
+    void enqueue(int x) {
+        if (isFull()) {
+            cout << "Queue is FULL! Cannot insert " << x << endl;
+            return;
+        }
+        rear = (rear + 1) % SIZE; // circular move
+        arr[rear] = x;
+        count++;
+        cout << x << " enqueued.\n";
+    }
+
+    // Remove element from front of queue
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "Queue is EMPTY! Nothing to remove.\n";
+            return;
+        }
+        cout << arr[front] << " dequeued.\n";
+        front = (front + 1) % SIZE; // move front ahead circularly
+        count--;
+    }
+
+    // Return front element
+    int getFront() {
+        if (isEmpty()) {
+            cout << "Queue is EMPTY!\n";
+            return -1;
+        }
+        return arr[front];
+    }
+
+    // Return rear element
+    int getRear() {
+        if (isEmpty()) {
+            cout << "Queue is EMPTY!\n";
+            return -1;
+        }
+        return arr[rear];
+    }
+
+    // Check if queue is empty
+    bool isEmpty() {
+        return count == 0;
+    }
+
+    // Check if queue is full
+    bool isFull() {
+        return count == SIZE;
+    }
+
+    // Display queue contents
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is EMPTY!\n";
+            return;
+        }
+        cout << "Queue elements: ";
+        for (int i = 0; i < count; i++) {
+            cout << arr[(front + i) % SIZE] << " ";
+        }
+        cout << endl;
+    }
+};
+
+// Test in main()
+int main() {
+    Queue q;
+
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
+
+    q.display();
+
+    q.dequeue();   // removes 10
+    q.dequeue();   // removes 20
+
+    q.display();
+
+    q.enqueue(60);
+    q.enqueue(70);
+
+    q.display();
+
+    cout << "Front element: " << q.getFront() << endl;
+    cout << "Rear element: " << q.getRear() << endl;
+
+    return 0;
+}
