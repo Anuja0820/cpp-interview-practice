@@ -1,0 +1,19 @@
+#include <deque>
+#include <iostream>
+using namespace std;
+
+int main() {
+    deque<int> dq;
+
+    dq.push_back(10);   // [10]
+    dq.push_back(20);   // [10, 20]
+    dq.push_front(5);   // [5, 10, 20]
+
+    cout << dq.front() << endl; // 5
+    cout << dq.back() << endl;  // 20
+
+    dq.pop_front(); // remove 5 → [10, 20]
+    dq.pop_back();  // remove 20 → [10]
+
+    cout << dq.front() << endl; // 10
+}
